@@ -37,10 +37,10 @@
 - (IBAction)addNewItem:(id)sender
 {
     // Create a new BNRItem and add it to the store
-    BNRItem *newItem = [[BNRItemStore defaultStore] createItem];
+    BNRItem *newItem = [[BNRItemStore sharedStore] createItem];
 
     // Figure out where that item is in the array 
-    int lastRow = [[[BNRItemStore defaultStore] allItems] indexOfObject:newItem];
+    int lastRow = [[[BNRItemStore sharedStore] allItems] indexOfObject:newItem];
         
     NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
 
@@ -64,7 +64,7 @@
     moveRowAtIndexPath:(NSIndexPath *)fromIndexPath 
            toIndexPath:(NSIndexPath *)toIndexPath 
 {
-    [[BNRItemStore defaultStore] moveItemAtIndex:[fromIndexPath row]
+    [[BNRItemStore sharedStore] moveItemAtIndex:[fromIndexPath row]
                                          toIndex:[toIndexPath row]];
 }
 
@@ -73,7 +73,7 @@
 {
     DetailViewController *detailViewController = [[DetailViewController alloc] init];
     
-    NSArray *items = [[BNRItemStore defaultStore] allItems];
+    NSArray *items = [[BNRItemStore sharedStore] allItems];
     BNRItem *selectedItem = [items objectAtIndex:[indexPath row]];
 
     // Give detail view controller a pointer to the item object in row
@@ -91,7 +91,7 @@
     // If the table view is asking to commit a delete command...
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        BNRItemStore *ps = [BNRItemStore defaultStore];
+        BNRItemStore *ps = [BNRItemStore sharedStore];
         NSArray *items = [ps allItems];
         BNRItem *p = [items objectAtIndex:[indexPath row]];
         [ps removeItem:p];
@@ -105,7 +105,7 @@
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-    return [[[BNRItemStore defaultStore] allItems] count];
+    return [[[BNRItemStore sharedStore] allItems] count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -124,7 +124,7 @@
     // Set the text on the cell with the description of the item
     // that is at the nth index of items, where n = row this cell
     // will appear in on the tableview
-    BNRItem *p = [[[BNRItemStore defaultStore] allItems]
+    BNRItem *p = [[[BNRItemStore sharedStore] allItems]
                                     objectAtIndex:[indexPath row]];
     [[cell textLabel] setText:[p description]];
     return cell;

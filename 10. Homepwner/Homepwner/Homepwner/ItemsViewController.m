@@ -54,8 +54,8 @@
 
 - (void)addNewItem:(id)sender
 {
-    BNRItem *newItem = [[BNRItemStore defaultStore] createItem];
-    int lastRow = [[[BNRItemStore defaultStore] allItems] indexOfObject:newItem];
+    BNRItem *newItem = [[BNRItemStore sharedStore] createItem];
+    int lastRow = [[[BNRItemStore sharedStore] allItems] indexOfObject:newItem];
     
     NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
     [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip]
@@ -75,7 +75,7 @@
     moveRowAtIndexPath:(NSIndexPath *)fromIndexPath 
            toIndexPath:(NSIndexPath *)toIndexPath 
 {
-    [[BNRItemStore defaultStore] moveItemAtIndex:[fromIndexPath row]
+    [[BNRItemStore sharedStore] moveItemAtIndex:[fromIndexPath row]
                                          toIndex:[toIndexPath row]];
 }
 
@@ -86,7 +86,7 @@
     // If the table view is asking to commit a delete command...
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        BNRItemStore *ps = [BNRItemStore defaultStore];
+        BNRItemStore *ps = [BNRItemStore sharedStore];
         NSArray *items = [ps allItems];
         BNRItem *p = [items objectAtIndex:[indexPath row]];
         [ps removeItem:p];
@@ -100,7 +100,7 @@
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-    return [[[BNRItemStore defaultStore] allItems] count];
+    return [[[BNRItemStore sharedStore] allItems] count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -119,7 +119,7 @@
     // Set the text on the cell with the description of the item
     // that is at the nth index of items, where n = row this cell
     // will appear in on the tableview
-    BNRItem *p = [[[BNRItemStore defaultStore] allItems]
+    BNRItem *p = [[[BNRItemStore sharedStore] allItems]
                                     objectAtIndex:[indexPath row]];
     [[cell textLabel] setText:[p description]];
     return cell;

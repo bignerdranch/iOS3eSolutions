@@ -17,7 +17,7 @@
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
         for (int i = 0; i < 10; i++) {
-            [[BNRItemStore defaultStore] createItem];
+            [[BNRItemStore sharedStore] createItem];
         }
     }
     return self;
@@ -31,7 +31,7 @@
 - (NSInteger)tableView:(UITableView *)tableView
  numberOfRowsInSection:(NSInteger)section
 {
-    return [[[BNRItemStore defaultStore] allItems] count];
+    return [[[BNRItemStore sharedStore] allItems] count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -50,7 +50,7 @@
     // Set the text on the cell with the description of the item
     // that is at the nth index of items, where n = row this cell
     // will appear in on the tableview
-    BNRItem *p = [[[BNRItemStore defaultStore] allItems]
+    BNRItem *p = [[[BNRItemStore sharedStore] allItems]
                                     objectAtIndex:[indexPath row]];
     [[cell textLabel] setText:[p description]];
     return cell;

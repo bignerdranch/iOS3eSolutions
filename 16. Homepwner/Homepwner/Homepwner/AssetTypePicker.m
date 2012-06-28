@@ -25,7 +25,7 @@
 - (NSInteger)tableView:(UITableView *)tableView 
  numberOfRowsInSection:(NSInteger)section
 {
-    return [[[BNRItemStore defaultStore] allAssetTypes] count];
+    return [[[BNRItemStore sharedStore] allAssetTypes] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView 
@@ -39,7 +39,7 @@
                                        reuseIdentifier:@"UITableViewCell"];
     }
     
-    NSArray *allAssets = [[BNRItemStore defaultStore] allAssetTypes];
+    NSArray *allAssets = [[BNRItemStore sharedStore] allAssetTypes];
     NSManagedObject *assetType = [allAssets objectAtIndex:[ip row]];
     
     // Use key-value coding to get the asset type's label
@@ -63,7 +63,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)ip
 
     [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
     
-    NSArray *allAssets = [[BNRItemStore defaultStore] allAssetTypes];
+    NSArray *allAssets = [[BNRItemStore sharedStore] allAssetTypes];
     NSManagedObject *assetType = [allAssets objectAtIndex:[ip row]];
     [item setAssetType:assetType];
     

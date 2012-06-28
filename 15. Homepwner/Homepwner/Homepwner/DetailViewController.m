@@ -60,7 +60,7 @@
 - (IBAction)cancel:(id)sender
 {
     // If the user cancelled, then remove the BNRItem from the store
-    [[BNRItemStore defaultStore] removeItem:item];
+    [[BNRItemStore sharedStore] removeItem:item];
 
     [[self presentingViewController] dismissViewControllerAnimated:YES completion:dismissBlock];
 }

@@ -12,18 +12,18 @@
 
 @implementation BNRItemStore
 
-+ (BNRItemStore *)defaultStore
++ (BNRItemStore *)sharedStore
 {
-    static BNRItemStore *defaultStore = nil;
-    if(!defaultStore)
-        defaultStore = [[super allocWithZone:nil] init];
+    static BNRItemStore *sharedStore = nil;
+    if(!sharedStore)
+        sharedStore = [[super allocWithZone:nil] init];
         
-    return defaultStore;
+    return sharedStore;
 }
 
 + (id)allocWithZone:(NSZone *)zone
 {
-    return [self defaultStore];
+    return [self sharedStore];
 }
 
 - (id)init 

@@ -14,7 +14,7 @@
     NSMutableArray *allItems;
 }
 
-+ (BNRItemStore *)defaultStore;
++ (BNRItemStore *)sharedStore;
 
 - (void)removeItem:(BNRItem *)p;
 

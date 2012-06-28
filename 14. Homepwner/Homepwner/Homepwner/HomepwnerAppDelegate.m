@@ -46,7 +46,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    BOOL success = [[BNRItemStore defaultStore] saveChanges];
+    BOOL success = [[BNRItemStore sharedStore] saveChanges];
     if(success) {
         NSLog(@"Saved all of the BNRItems");
     } else {

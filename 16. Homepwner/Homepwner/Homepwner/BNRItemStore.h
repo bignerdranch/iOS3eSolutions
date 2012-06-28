@@ -20,7 +20,7 @@
     NSManagedObjectModel *model;
 }
 
-+ (BNRItemStore *)defaultStore;
++ (BNRItemStore *)sharedStore;
 
 - (void)removeItem:(BNRItem *)p;
 
