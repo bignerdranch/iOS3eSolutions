@@ -12,7 +12,7 @@
 {
     NSMutableString *currentString;
 }
-@property (nonatomic, strong) id parentParserDelegate;
+@property (nonatomic, weak) id parentParserDelegate;
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *link;
