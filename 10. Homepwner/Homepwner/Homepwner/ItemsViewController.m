@@ -54,10 +54,15 @@
 
 - (void)addNewItem:(id)sender
 {
+    // Create a new BNRItem and add it to the store
     BNRItem *newItem = [[BNRItemStore sharedStore] createItem];
+    
+    // Figure out where that item is in the array
     int lastRow = [[[BNRItemStore sharedStore] allItems] indexOfObject:newItem];
     
     NSIndexPath *ip = [NSIndexPath indexPathForRow:lastRow inSection:0];
+    
+    // Insert this row into the table.
     [[self tableView] insertRowsAtIndexPaths:[NSArray arrayWithObject:ip]
                             withRowAnimation:UITableViewRowAnimationTop];
 }
