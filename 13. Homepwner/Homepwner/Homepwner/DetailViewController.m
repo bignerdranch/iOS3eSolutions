@@ -139,6 +139,7 @@
 - (IBAction)takePicture:(id)sender 
 {
     if([imagePickerPopover isPopoverVisible]) {
+        // If the popover is already up, get rid of it
         [imagePickerPopover dismissPopoverAnimated:YES];
         imagePickerPopover = nil;
         return;
@@ -166,6 +167,7 @@
     [imagePicker setDelegate:self];
 
     // Place image picker on the screen
+    // Check for iPad device before instantiating the popover controller
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         // Create a new popover controller that will display the imagePicker
         imagePickerPopover = [[UIPopoverController alloc] 
@@ -173,7 +175,7 @@
     
         [imagePickerPopover setDelegate:self];
     
-        // Display the popover controller, sender 
+        // Display the popover controller; sender 
         // is the camera bar button item
         [imagePickerPopover presentPopoverFromBarButtonItem:sender
                                    permittedArrowDirections:UIPopoverArrowDirectionAny
