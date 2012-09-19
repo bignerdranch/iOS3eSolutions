@@ -144,13 +144,6 @@
         imagePickerPopover = nil;
         return;
     }   
-
-    NSString *oldKey = [item imageKey];
-    // Did the item already have an image?
-    if (oldKey) {
-        // Delete the old image
-        [[BNRImageStore defaultImageStore] deleteImageForKey:oldKey];
-    }
     
     UIImagePickerController *imagePicker =
             [[UIImagePickerController alloc] init];
@@ -200,6 +193,13 @@
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    NSString *oldKey = [item imageKey];
+    // Did the item already have an image?
+    if (oldKey) {
+        // Delete the old image
+        [[BNRImageStore defaultImageStore] deleteImageForKey:oldKey];
+    }
+    
     // Get picked image from info dictionary
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
 
